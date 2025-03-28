@@ -19,7 +19,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 const NAME_PROMPTS = [
-  "Great! Let’s make sure everything’s accurate. Could you enter the recipient’s full name, just as it appears on their ID?📝 E.g., Jane Doe",
+  "Great! Let's make sure everything's accurate. Could you enter the recipient's full name, just as it appears on their ID?📝 E.g., Jane Doe",
   "Almost there! Please share the recipient's full name exactly as shown on their official ID.📝 E.g., John Doe",
   "Awesome! Please enter the recipient's full name as it appears on their official ID. 📝 E.g., Jane Doe",
   "Got it! Could you please provide the recipient's full name, just as it appears on their ID? 📝 E.g., John Doe",
@@ -73,7 +73,7 @@ const AMOUNT_PROMPTS = [
   (name: string, country: string) =>
     `Thanks! How much (USD) are we sending to *${toPascalCase(name)}* in *${toPascalCase(country)}*? 💸 E.g., 100`,
   (name: string, country: string) =>
-    `Awesome! Could you let us know how much (USD) you’d like to send to *${toPascalCase(name)}* in *${toPascalCase(country)}*? 💸 E.g., 100`,
+    `Awesome! Could you let us know how much (USD) you'd like to send to *${toPascalCase(name)}* in *${toPascalCase(country)}*? 💸 E.g., 100`,
   (name: string, country: string) =>
     `Perfect! What amount (USD) should we transfer to *${toPascalCase(name)}* in *${toPascalCase(country)}*?`,
 ];
@@ -102,10 +102,11 @@ const parseAmount = (input: string): number => {
 
 const bot = new TelegramBot(env.TELEGRAM_BOT_TOKEN, { webHook: true });
 
-// bot
-//   .setWebHook(`${env.NEXT_PUBLIC_APP_URL}/api/bot`)
-//   .then(() => console.log("Webhook set successfully"))
-//   .catch((err) => console.error("Error setting webhook:", err));
+// Set the webhook URL for the Telegram bot
+bot
+  .setWebHook(`${env.NEXT_PUBLIC_APP_URL}/api/bot`)
+  .then(() => console.log("Webhook set successfully"))
+  .catch((err) => console.error("Error setting webhook:", err));
 
 // Handle Callback Queries for Confirmation
 // Callback query handling in route.js
