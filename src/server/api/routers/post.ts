@@ -5,8 +5,8 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { env } from "~/env";
 
 async function sendSms(to: string, text: string) {
-  const accountSid = "";
-  const authToken = ""; // Replace with your actual Auth Token
+  const accountSid = "ACd5601360d5a7391df2f933682dcda442";
+  const authToken = "2e00a6b7f840ace0025ff4abcbf5cea1"; // Replace with your actual Auth Token
   const client = new Twilio(accountSid, authToken);
 
   try {
@@ -41,7 +41,7 @@ export const postRouter = createTRPCRouter({
       }
       // TODO: Enable this
       if (String(env.ENABLE_SMS) === "true") {
-        await sendSms(input.phone, `Your payu OTP is: ${otp}`);
+        await sendSms(input.phone, `Your Freelii OTP is: ${otp}`);
       }
       await ctx.db.oTPVerification.upsert({
         where: {
@@ -103,11 +103,19 @@ export const postRouter = createTRPCRouter({
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      // Create a placeholder implementation that returns something
-      return { success: true, message: `Created ${input.name}` };
+      // return ctx.db.post.create({
+      //   data: {
+      //     name: input.name,
+      //   },
+      // });
     }),
 
   getLatest: publicProcedure.query(async ({ ctx }) => {
     return null;
+    // const post = await ctx.db.post.findFirst({
+    //   orderBy: { createdAt: "desc" },
+    // });
+    //
+    // return post ?? null;
   }),
 });
