@@ -103,11 +103,11 @@ export const postRouter = createTRPCRouter({
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-
+      // Create a placeholder implementation that returns something
+      return { success: true, message: `Created ${input.name}` };
     }),
 
   getLatest: publicProcedure.query(async ({ ctx }) => {
     return null;
-
   }),
 });
