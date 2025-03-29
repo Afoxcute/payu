@@ -11,7 +11,7 @@ export const env = createEnv({
     TELEGRAM_BOT_TOKEN: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
-      .default("development"),
+      .default("production"),
     ANCHOR_API_BASE_URL: z.string().url(),
     ANCHOR_API_TOKEN: z.string(),
     ESCROW_CONTRACT_ADDRESS: z.string(),
